@@ -1200,7 +1200,7 @@ void populate_lists(unsigned int lists, bool snes_ext_match)
 
   if (lists&LIST_DN)
   {
-#ifndef __UNIXSDL__
+#if !defined(__UNIXSDL__) || defined(__OS2__)
     unsigned int drives = GetLogicalDrives(), i = 0;
 #endif
 
@@ -1210,7 +1210,7 @@ void populate_lists(unsigned int lists, bool snes_ext_match)
       sort((intptr_t *)d_names, offset, (size_t)(*d_names), swapdirs);
     }
 
-#ifndef __UNIXSDL__
+#if !defined(__UNIXSDL__) || defined(__OS2__)
     while (i < 26)
     {
       if (drives&BIT(i))
@@ -1379,7 +1379,7 @@ void GUILoadData()
     nameptr = d_names[GUIcurrentdircursloc+2];
 
     strcatslash(ZRomPath);
-    #ifndef __UNIXSDL__
+    #if !defined(__UNIXSDL__) || defined(__OS2__)
     if ((strlen(nameptr) == 4) && (nameptr[2] == ':')) // MS drives are stored as '[?:]',
     { // so we can't use quick string catenation to browse through
       strncpy(ZRomPath, nameptr+1, 2);
@@ -1657,7 +1657,7 @@ int GUILoadKeysNavigate()
   return(0);
 }
 
-#ifdef __UNIXSDL__
+#if defined(__UNIXSDL__) && !defined(__OS2__)
 #define DriveCount() 0
 #else
 static unsigned int DriveCount()
