@@ -23,6 +23,8 @@ Config file handler creator by Nach (C) 2005-2007
 #error You are using an unsupported compiler
 #endif
 
+#include <cstring>
+
 #include <iostream>
 #include <fstream>
 #include <string>

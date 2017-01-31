@@ -22,6 +22,8 @@ This is part of a toolkit used to assist in ZSNES development
 #ifndef STRUTIL_H
 #define STRUTIL_H
 
+#include <strings.h>
+
 #include <string>
 #include <vector>
 #include <cctype>
