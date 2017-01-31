@@ -25,6 +25,9 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #include "gblhdr.h"
 #define fnamecmp strcmp
 #define fnamencmp strncmp
+#ifdef __OS2__
+#include "../linux/lib.h"
+#endif
 #else
 #ifdef __WIN32__
 #include "../win/lib.h"

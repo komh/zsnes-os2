@@ -25,6 +25,10 @@ This is part of a toolkit used to assist in ZSNES development
 #include <string.h>
 #include <sys/stat.h>
 
+#ifdef __OS2__
+#include <unistd.h>
+#endif
+
 void parse_dir(const char *, void (*func)(const char *, struct stat&));
 bool parse_path(const char *, void (*func)(const char *, struct stat&));
 

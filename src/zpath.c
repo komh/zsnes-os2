@@ -51,6 +51,8 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 char ZCfgFile[] = "zsnes.cfg";
 #elif defined(__WIN32__)
 char ZCfgFile[] = "zsnesw.cfg";
+#elif defined(__OS2__)
+char ZCfgFile[] = "zsnes2.cfg";
 #else
 char ZCfgFile[] = "zsnesl.cfg";
 #endif
@@ -62,7 +64,7 @@ char *ZCartName = 0, *ZSaveName = 0, *ZStateName = 0, *ZSaveST2Name = 0;
 static bool ZStartAlloc = false, ZCfgAlloc = false, ZSramAlloc = false, ZRomAlloc = false;
 static bool ZCartAlloc = false, ZSaveAlloc = false, ZStateAlloc = false, ZSaveST2Alloc = false;
 
-#ifdef __UNIXSDL__
+#if defined(__UNIXSDL__) && !defined(__OS2__)
 
 void cfgpath_ensure(const char *launch_command)
 {
@@ -242,7 +244,7 @@ void init_save_paths()
   }
   else
   {
-    #ifdef __UNIXSDL__
+    #if defined(__UNIXSDL__) && !defined(__OS2__)
     ZSramPath = ZCfgPath;
     #else
     ZSramPath = ZRomPath;
@@ -435,7 +437,7 @@ int mkdir_dir(const char *path, const char *dir)
 
 char *realpath_dir(const char *path, const char *file, char *buf)
 {
-#ifdef __UNIXSDL__
+#if defined(__UNIXSDL__) && !defined(__OS2__)
   return(realpath_tilde(strdupcat_internal(path, file), buf));
 #else
   return(realpath(strdupcat_internal(path, file), buf));
@@ -623,7 +625,7 @@ bool mkpath(const char *path, mode_t mode)
   return(success);
 }
 
-#ifdef __UNIXSDL__
+#if defined(__UNIXSDL__) && !defined(__OS2__)
 
 //Like realpath(), but will return the last element as the link it is
 char *realpath_link(const char *path, char *resolved_path)

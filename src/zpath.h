@@ -111,7 +111,7 @@ void strdirname(char *str);
 void strbasename(char *str);
 bool mkpath(const char *path, mode_t mode);
 
-#ifdef __UNIXSDL__
+#if defined(__UNIXSDL__) && !defined(__OS2__)
 char *realpath_link(const char *path, char *resolved_path);
 char *realpath_tilde(const char *path, char *resolved_path);
 #else

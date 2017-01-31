@@ -85,6 +85,12 @@ case x$target in
   *-*-cygwin* | *-*-*ming*)
     NFLAGS="$NFLAGS -f win32"
     ;;
+  *-*-os2*)
+    CFLAGS="$CFLAGS -D__OS2__"
+    NFLAGS="$NFLAGS -D__OS2__ -f aout"
+    EXESUF=".exe"
+    LINUX_LIB="\$(PORT_D)/lib.o"
+    ;;
   *)
     AC_MSG_ERROR(This target is not supported)
     ;;
@@ -235,12 +241,26 @@ AC_MSG_CHECKING(if you want gdb friendly executable)
 AC_MSG_RESULT($debug)
 if test x$debug = xyes; then
 dnl - It is easier to debug zsnes with no optimization enabled.
-  ZSNESEXE="zsnesd"
+  case x$target in
+    *-*-os2*)
+      ZSNESEXE="zsnes2d"
+      ;;
+    *)
+      ZSNESEXE="zsnesd"
+      ;;
+  esac
   PSR_TEMP=""
   CFLAGS="$CFLAGS -Wall -W -DDEBUG -O0 -fno-omit-frame-pointer -gstabs3"
   NFLAGS="$NFLAGS -DDEBUG -g -F stabs -s -O0"
 else
-  ZSNESEXE="zsnes"
+  case x$target in
+    *-*-os2*)
+      ZSNESEXE="zsnes2"
+      ;;
+    *)
+      ZSNESEXE="zsnes"
+      ;;
+  esac
   PSR_TEMP="	rm -f t_\$*.c"
 
   CFLAGSBAK="$CFLAGS"
@@ -330,6 +350,8 @@ AC_SUBST(JMA_FILES)
 AC_SUBST(MMLIB_FILES)
 AC_SUBST(DEBUGGER_FILES)
 AC_SUBST(PSR_TEMP)
+AC_SUBST(EXESUF)
+AC_SUBST(LINUX_LIB)
 
 AC_CONFIG_FILES(Makefile)
 touch -t 198001010000 makefile.dep

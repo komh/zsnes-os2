@@ -70,7 +70,11 @@ void fix_line(string &line, const char *filename)
 //This function is so crazy because GCC doesn't put in proper directories, and adds system headers
 void dependency_calculate_c(const char *filename)
 {
+#ifdef __OS2__
+  string command = cc + " " + cflags + " -MM -MG " + filename;
+#else
   string command = cc + " " + cflags + " -M -MG " + filename;
+#endif
   FILE *fp = popen(command.c_str(), "r");
   if (fp)
   {
