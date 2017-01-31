@@ -663,10 +663,12 @@ void ProcessKeyBuf(int scancode)
       case SDLK_LEFTBRACKET:  vkeyval = '['; accept = 1; break;
       case SDLK_RIGHTBRACKET: vkeyval = ']'; accept = 1; break;
       case SDLK_SEMICOLON:    vkeyval = ';'; accept = 1; break;
+      case SDLK_QUOTE:        vkeyval = '\''; accept = 1; break;
       case SDLK_COMMA:        vkeyval = ','; accept = 1; break;
       case SDLK_PERIOD:       vkeyval = '.'; accept = 1; break;
       case SDLK_SLASH:        vkeyval = '/'; accept = 1; break;
-      case SDLK_QUOTE:        vkeyval = '`'; accept = 1; break;
+      case SDLK_BACKQUOTE:    vkeyval = '`'; accept = 1; break;
+      case SDLK_BACKSLASH:    vkeyval = '\\'; accept = 1; break;
     }
   }
   else
