@@ -47,7 +47,7 @@ typedef unsigned short mode_t;
 #define false 0
 #endif
 
-#ifdef __UNIXSDL__
+#if defined(__UNIXSDL__) && !defined(__OS2__)
 #define DIR_SLASH "/"
 #define DIR_SLASH_C '/'
 #define DIR_SLASH_C_OTHER '\\'

@@ -22,8 +22,13 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #ifdef __UNIXSDL__
 #include "gblhdr.h"
 #include <signal.h>
+#ifdef __OS2__
+#define DIR_SLASH "\\"
+#define WRITE_BINARY "wb"
+#else
 #define DIR_SLASH "/"
 #define WRITE_BINARY "w"
+#endif
 #define NULL_FILE "/dev/null"
 #include "linux/safelib.h"
 #else
